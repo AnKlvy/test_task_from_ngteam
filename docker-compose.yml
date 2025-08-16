@@ -1,0 +1,23 @@
+# version: '3.8'  # Убрано для совместимости с новыми версиями Docker Compose
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: test_task_telebot
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-telebot}
+      POSTGRES_USER: ${POSTGRES_USER:-telebot_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-your_secure_password}
+    volumes:
+      - test_task_postgres:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-telebot_user} -d ${POSTGRES_DB:-telebot}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  test_task_postgres:
