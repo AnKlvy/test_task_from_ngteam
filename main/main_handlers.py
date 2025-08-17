@@ -5,6 +5,7 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message, CallbackQuery
 
 from common.utils import safe_edit_or_send
+from common.timezone_utils import get_user_timezone
 from database.user_repository import UserRepository
 from main.main_kb import get_menu_kb
 
@@ -22,7 +23,16 @@ async def student_start(message: Message, state: FSMContext):
 
 async def show_main_menu(message_or_callback, state):
     keyboard = get_menu_kb()
-    await UserRepository.create(message_or_callback.from_user.id, message_or_callback.from_user.username, 'Almaty')
+
+    # Определяем таймзону пользователя на основе языкового кода
+    user_timezone = get_user_timezone(message_or_callback.from_user.language_code)
+
+    await UserRepository.create(
+        message_or_callback.from_user.id,
+        message_or_callback.from_user.username,
+        user_timezone
+    )
+
     await safe_edit_or_send(message_or_callback,
         "🎯 Добро пожаловать в Task Manager!\n\n"
         "Здесь вы можете:\n"

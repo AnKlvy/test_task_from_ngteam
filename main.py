@@ -14,6 +14,7 @@ logger = get_logger(__name__)
 from database.database import init_database
 from main.commands import setup_commands, set_bot_commands
 from tasks.handlers import router as tasks_router
+from settings import router as settings_router
 from aiogramx import Calendar, TimeSelectorGrid
 from main.main_handlers import router as main_router
 
@@ -39,6 +40,7 @@ async def main() -> None:
 
         dp.include_router(main_router)
         dp.include_router(tasks_router)
+        dp.include_router(settings_router)
         try:
             await init_database()
             logger.info("✅ База данных инициализирована")
