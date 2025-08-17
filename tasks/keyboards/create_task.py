@@ -13,5 +13,5 @@ def confirm_create_kb() -> InlineKeyboardMarkup:
     """Клавиатура главного меню админа"""
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Создать", callback_data="confirm_create_1")],
-        [InlineKeyboardButton(text="Отмена", callback_data="confirm_create_2")],
+        [InlineKeyboardButton(text="Отмена", callback_data="confirm_create_0")],
     ])

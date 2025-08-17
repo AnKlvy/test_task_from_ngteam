@@ -8,7 +8,7 @@ class TasksRepository:
 
     @staticmethod
     async def create(telegram_id: int, text: str, deadline: str, priority: int) -> Tasks:
-        """Создать нового пользователя"""
+        """Создать новую задачу"""
         async with get_db_session() as session:
             user = await UserRepository.get_by_telegram_id(telegram_id)
             task = Tasks(
@@ -19,4 +19,5 @@ class TasksRepository:
             )
             session.add(task)
             await session.commit()
+            await session.refresh(task)
             return task

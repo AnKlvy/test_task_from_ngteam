@@ -6,6 +6,8 @@ def get_menu_kb():
         [InlineKeyboardButton(text="Создать задачу", callback_data="create_task")],
         [InlineKeyboardButton(text="Список задач", callback_data="list_tasks")],
         [InlineKeyboardButton(text="Настройки", callback_data="settings")],
+        [InlineKeyboardButton(text="Экспорт CSV", callback_data="export_csv")],
+        [InlineKeyboardButton(text="Помощь", callback_data="help")],
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 

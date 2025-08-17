@@ -23,7 +23,12 @@ async def show_main_menu(message, state):
     keyboard = get_menu_kb()
     await UserRepository.create(message.from_user.id, message.from_user.username, 'Almaty')
     await message.answer(
-        "Привет",
+        "🎯 Добро пожаловать в Task Manager!\n\n"
+        "Здесь вы можете:\n"
+        "• Создавать новые задачи с дедлайнами\n"
+        "• Управлять приоритетами\n"
+        "• Отслеживать выполнение\n\n"
+        "Выберите действие:",
         reply_markup=keyboard
     )
 

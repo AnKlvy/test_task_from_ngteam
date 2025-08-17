@@ -1,13 +1,16 @@
 import asyncio
 import logging
+from os import getenv
 
 from aiogram import Bot, Dispatcher
+from dotenv import load_dotenv
 
 from database.database import init_database
-from main.commands import setup_commands
+from main.commands import setup_commands, set_bot_commands
 from tasks.handlers import router as tasks_router
+load_dotenv()
 
-API_TOKEN = '7347393174:AAF7-W2t-6DfTLNW77EoRlEPVFBmWNknnnQ'
+API_TOKEN = getenv("BOT_TOKEN")
 
 from main.main_handlers import router as main_router
 
@@ -19,6 +22,11 @@ async def main() -> None:
         bot = Bot(token=API_TOKEN)
         dp = Dispatcher()
         logging.info("Запуск в polling режиме")
+
+        # Установка меню команд
+        await set_bot_commands(bot)
+        logging.info("✅ Меню команд установлено")
+
         await setup_commands(dp)
         dp.include_router(main_router)
         dp.include_router(tasks_router)
