@@ -77,7 +77,6 @@ async def select_time(callback: CallbackQuery, state: FSMContext):
         await c.answer()
 
     ts_modern = TimeSelectorModern(
-        allow_future_only=True,
         carry_over=True,
         on_select=on_select,
         on_back=on_back,
