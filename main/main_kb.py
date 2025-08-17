@@ -11,3 +11,10 @@ def get_menu_kb():
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
+def get_main_menu_kb():
+    buttons = [
+        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="main_menu")],
+    ]
+
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+

@@ -8,7 +8,7 @@ from aiogram.fsm.state import State, StatesGroup
 
 from common.utils import get_priority_text
 from database.tasks_repository import TasksRepository
-from main.main_kb import get_menu_kb
+from main.main_kb import get_menu_kb, get_main_menu_kb
 from tasks.keyboards.create_task import confirm_create_kb, choose_priority_kb
 from aiogramx import Calendar
 
@@ -28,6 +28,7 @@ class CreateTaskStates(StatesGroup):
 async def enter_text(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer(
         text="Введите текст задачи",
+        reply_markup=get_main_menu_kb()
     )
     await state.set_state(CreateTaskStates.enter_text)
 
