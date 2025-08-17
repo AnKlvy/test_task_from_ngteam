@@ -24,7 +24,7 @@ class Tasks(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     text = Column(String(4096), nullable=False)
-    deadline = Column(String(255))
+    deadline = Column(DateTime, nullable=True)
     priority = Column(Integer, nullable=False)
     status = Column(Integer, nullable=False, default=0)
     created_at = Column(DateTime, server_default=func.now())

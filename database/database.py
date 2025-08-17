@@ -40,8 +40,6 @@ async def init_database():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
-    print("✅ База данных инициализирована")
-
 
 async def close_database():
     """Закрытие соединения с базой данных"""

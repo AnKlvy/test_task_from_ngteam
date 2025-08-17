@@ -4,6 +4,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import BotCommand, Message, CallbackQuery
 
 from main.main_handlers import show_main_menu, router
+from main.main_kb import get_menu_kb
 
 
 async def start_command(message, state):
@@ -71,7 +72,7 @@ async def help_command(message: Message, state: FSMContext):
         "• Экспорт данных в CSV\n\n"
         "Используйте кнопки меню или команды для навигации!"
     )
-    await message.answer(help_text, parse_mode="Markdown")
+    await message.answer(help_text, parse_mode="Markdown", reply_markup=get_menu_kb())
 
 
 async def export_command(message: Message, state: FSMContext):
